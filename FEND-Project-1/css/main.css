@@ -1,0 +1,132 @@
+
+h1{
+
+}
+article{
+
+}
+a.post-Item{
+  color: black;
+  text-decoration: none;
+}
+div{
+}
+body{
+  background: url("../images/537.gif") repeat #00cc00;
+}
+form{
+  background: #dddddd;
+  padding: 20px;
+  border: 2px solid black;
+}
+form.form-Item {
+    display: table;
+}
+div.form-Item {
+    display: table-row;
+}
+label, input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+label {
+    padding-right: 10px;
+}
+.page{
+  display:grid;
+  width: 100%;
+  min-width: 400px;
+  grid-template:
+    "avi head" 100px
+    "nav nav" 75px
+    "main main" 1fr
+    "foot foot" 30px
+    / 100px 1fr;
+  padding: 5px;
+}
+.header{
+  grid-area: head;
+  text-align: center;
+  background: #CCCCCC;
+}
+.avatar{
+  grid-area: avi;
+  width: 100px;
+  height: 100px;
+  background: no-repeat center/100% url("../images/patches_layout.jpg");
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.navbar{
+  grid-area: nav;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: url("../images/503.gif") repeat #ccc;
+}
+.main{
+  grid-area: main;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: ;
+}
+.post{
+  min-height: 50px;
+  max-height: 200px;
+  width: 100%;
+  padding: 10px;
+  background: #dddddd;
+}
+.footer{
+  grid-area: foot;
+  text-align: center;
+  background: #CCCCCC
+}
+.button{
+  text-align: center;
+  margin: 3px;
+}
+.box{
+  border: 2px solid black;
+}
+
+@media (min-width: 600px){
+  .page{
+    display:grid;
+    width: 100%;
+    grid-template:
+      "avi head" 100px
+      "nav main" 1fr
+      "foot foot" 30px
+      / 100px 1fr;
+    padding: 5px;
+  }
+  .navbar{
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: url("../images/503.gif") repeat #ccc;
+  }
+  .main{
+    grid-area: main;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 5px;
+    background: ;
+  }
+  .post{
+    min-height: 50px;
+    max-height: 200px;
+    max-width: 300px;
+  }
+}
