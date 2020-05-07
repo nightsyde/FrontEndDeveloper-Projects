@@ -1,0 +1,30 @@
+@media (min-width: 600px) {
+    .page {
+        display: grid;
+        width: 100%;
+        grid-template:
+            "avi head" 100px
+            "nav main" 1fr
+            "foot foot" 30px
+            / 100px 1fr;
+        padding: 5px;
+    }
+    .navbar {
+        grid-area: nav;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: url("../images/503.gif") repeat #ccc;
+    }
+    .main {
+        grid-area: main;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: start;
+        gap: 5px;
+        background: ;
+    }
+}

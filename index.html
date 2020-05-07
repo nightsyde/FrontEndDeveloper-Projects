@@ -1,76 +1,164 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Kirk Donaldson">
-    <title>FEND Project 1: Personal Blog Website</title>
-    <link rel="stylesheet" type="text/css" href="./css/main.css">
-  </head>
-  <body>
-    <div class="page">
-      <div class="header box">
-        <h1>My Blog Website</h1>
-      </div>
-      <a href="./index.html">
-        <div class="avatar box">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Kirk Donaldson" />
+        <title>FEND Project 1: Personal Blog Website</title>
+        <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    </head>
+    <body>
+        <div class="page">
+            <div class="header box">
+                <h1>My Blog Website</h1>
+            </div>
+            <a href="./index.html">
+                <div class="avatar box"></div>
+            </a>
+            <div class="navbar box">
+                <button class="button">
+                    <a href="newPost.html">New Post</a>
+                </button>
+                <button class="button">
+                    <a href="https://www.facebook.com/nightside.spellsinger">Facebook</a>
+                </button>
+                <button class="button">
+                    <a href="https://twitter.com/Nitesyde">Twitter</a>
+                </button>
+                <button class="button">
+                    <a href="https://www.instagram.com/nightsyde/">Instagram</a>
+                </button>
+                <button class="button">
+                    <a href="https://mewe.com/i/kirkdonaldson">MeWe</a>
+                </button>
+            </div>
+            <div class="main">
+                <a class="post-Item" href="./post5.html">
+                    <article class="card-Grid box">
+                        <header>
+                            <h2>Reworking, updating, and adding stuff</h2>
+                        </header>
+                        <figure>
+                            <img src="./images/UdacityLogo.png" alt="Udacity Logo" />
+                            <figcaption>Udacity Logo</figcaption>
+                        </figure>
+                        <div>
+                            <h3>07 May 2020</h3>
+                            <p>
+                                Well, I have reworked the site and included most of what I missed before. I had to rename some of my style classes, because naming something "card" instead of "post" seems to be important, even if they
+                                functioned the same way. I also did some content update, because the psuedo-dummy stuff I was using was just not long enough to show the formting requirements for the page.
+                            </p>
+                            <p>I am still confused about one comment the reviewer had:</p>
+                            <blockquote><li>You have made separate pages for Authors info and social sharing, this should be on the blog page.</li></blockquote>
+                            <p>
+                                Okay, so I have a separate page for "Author Info", instead of having it plastered on the front page. I suppose I can shoehorn that at the bottom, just above the footer. I'm not sure about the
+                                <u>"social sharing"</u>, though. I am guessing that they are talking about the subscription form.
+                            </p>
+                        </div>
+                    </article>
+                </a>
+                <a class="post-Item" href="./post1.html">
+                    <article class="card-Grid box">
+                        <header>
+                            <h2>First Review</h2>
+                        </header>
+                        <figure>
+                            <img src="./images/UdacityLogo.png" alt="Udacity Logo" />
+                            <figcaption>Udacity Logo</figcaption>
+                        </figure>
+                        <div>
+                            <h3>06 May 2020</h3>
+                            <p>
+                                Technically, it was the second review. The <strong>actual</strong> first reply was that the reviewer couldn't see the files. I had not set up my Git Pages properly, so I had to do a quick review of that, then
+                                redo my file structure to post the project. <em>Then</em> I got my review.
+                            </p>
+                            <p>
+                                There were some requirements I missed, like using bold and italic text, having alt text for images that I had also forgotten to include, and doing style sheet imports. It is too late in the day for me to feel
+                                like messing with it right now, so I will tackle it all again tomorrow.
+                            </p>
+                        </div>
+                    </article>
+                </a>
+                <a class="post-Item" href="./post2.html">
+                    <article class="card-Grid box">
+                        <header>
+                            <h2>First Submission</h2>
+                        </header>
+                        <figure>
+                            <img src="./images/chromeLogo.jpg" alt="Google Chrome Logo" />
+                            <figcaption>Google Chrome Logo</figcaption>
+                        </figure>
+                        <div>
+                            <h3>06 May 2020</h3>
+                            <p>
+                                Yay! I got the first draft of my website completed and submitted. I had a little issue with responsiveness with Chrome until I figured out that I had to enable "Experimental Features" in order for it to
+                                properly read the style changes with changing screen widths. I fought with the code for a couple hours before I tried it on Firefox and realized that it was browser issue. Then I spent another hour figuring
+                                out why. Still, the pages are working and uploaded.
+                            </p>
+                        </div>
+                    </article>
+                </a>
+                <a class="post-Item" href="./post3.html">
+                    <article class="card-Grid box">
+                        <header>
+                            <h2>Github Style Guide</h2>
+                        </header>
+                        <figure>
+                            <img src="./images/Octocat.png" alt="Github's Octocat" />
+                            <figcaption>Github's Octocat Logo</figcaption>
+                        </figure>
+                        <div>
+                            <h3>01 May 2020</h3>
+                            <p>
+                                Part of the rubric talks about how to format the commentary for updates to the file repositories on Github. Some of the stuff they specify makes sense. The problem is that my mind doesn't work in the same
+                                boxes theirs apparently do, particularly when it comes to the types of updates I make. If I'm doing near-wholesale changes to the content of my <em>webpage</em>, it is <strong>NOT</strong> a "feature". When I
+                                upload new stylesheets, or changes to the styles, how am I supposed to categorize it? Whiskey Tango Foxtrot, over?
+                            </p>
+                        </div>
+                    </article>
+                </a>
+                <a class="post-Item" href="./post4.html">
+                    <article class="card-Grid box">
+                        <header>
+                            <h2>And so it begins</h2>
+                        </header>
+                        <figure>
+                            <img src="./images/UdacityLogo.png" alt="Udacity Logo" />
+                            <figcaption>Udacity Logo</figcaption>
+                        </figure>
+                        <div>
+                            <h3>01 May 2020</h3>
+                            <p>
+                                I started reading over the rubric for this project. I don't think I have seen more extraneous requirements and silliness than the list of items that <strong>have</strong> to be included in the page. Not to
+                                mention that a good portion of what is in the requirements list was not covered during the course content. Okay, I understand that part of the process is to have the students learn to look the information up
+                                themselves. Still, having to look up the syntax for some of this is annoying.
+                            </p>
+                        </div>
+                    </article>
+                </a>
+            </div>
+            <div class="subscribe">
+                <form action="" method="get" class="form-Item">
+                    <div class="form-Item">
+                        <label for="name">Enter your name: </label>
+                        <input type="text" name="name" id="name" required />
+                    </div>
+                    <div class="form-Item">
+                        <label for="email">Enter your email: </label>
+                        <input type="email" name="email" id="email" required />
+                    </div>
+                    <div class="form-Item">
+                        <input type="submit" value="Subscribe!" />
+                    </div>
+                </form>
+            </div>
+            <div class="footer box">
+                <p>
+                    Kirk Donaldson is a technomancer and author. His first book- <em>Queen of Blades</em>- was published in October 2019. His primary website (<a href="http://www.iobbow.org">www.iobbow.org </a>) had not received any
+                    significant updates since 1998 until he began taking this course.
+                </p>
+                <p>copyright 2020. All rights reserved. Content used is public domain.</p>
+            </div>
         </div>
-      </a>
-      <div class="navbar box">
-        <button class="button">
-          <a href="newPost.html">New Post</a>
-        </button>
-        <button class="button">
-          <a href="about.html">About the author</a>
-        </button>
-        <button class="button">
-          <a href="https://www.facebook.com/nightside.spellsinger">Facebook</a>
-        </button>
-        <button class="button">
-          <a href="https://twitter.com/Nitesyde">Twitter</a>
-        </button>
-        <button class="button">
-          <a href="https://www.instagram.com/nightsyde/">Instagram</a>
-        </button>
-        <button class="button">
-          <a href="https://mewe.com/i/kirkdonaldson">MeWe</a>
-        </button>
-        <button class="button">
-          <a href="subscribe.html">Click to Subscribe</a>
-        </button>
-      </div>
-      <div class="main">
-        <a class="post-Item" href="./post1.html">
-          <article class="post box">
-            <h2>Mary had a little lamb</h2>
-            <h3>24 May 1830</h3>
-            <p>It's fleece was white as snow. Everywhere that Mary went, the lamb was sure to go.</p>
-          </article>
-        </a>
-        <a class="post-Item" href="./post2.html">
-          <article class="post box">
-            <h2>Little Jack Horner</h2>
-            <h3>25 Dec 1725</h3>
-            <p>He sat in a corner, eating his Christmas pie. He put in his thumb, and pulled out a plumb, and said, "What a good boy am I!"</p>
-          </article>
-        </a>
-        <a class="post-Item" href="./post3.html">
-          <article class="post box">
-            <h2>Jack Be Nimble</h2>
-            <h3>01 May 1815</h3>
-            <p>Jack be quick. Jack jumped over the candlestick.</p>
-          </article>
-        </a>
-        <a class="post-Item" href="./post4.html">
-          <article class="post box">
-            <h2>Hickory, dickory, dock</h2>
-            <h3>31 Oct 1744</h3>
-            <p>The mouse ran up the clock. The clock struck one, The mouse ran down, Hickory, dickory, dock.</p>
-          </article>
-        </a>
-      </div>
-      <div class="footer box">
-        copyright 2020. All rights reserved. Content used is public domain.
-      </div>
-    </div>
-  </body>
+    </body>
 </html>

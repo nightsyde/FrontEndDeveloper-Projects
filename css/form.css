@@ -1,0 +1,21 @@
+form {
+    background: #dddddd;
+    padding: 20px;
+    border: 2px solid black;
+    width: 100%;
+}
+form.form-Item {
+    display: table;
+}
+div.form-Item {
+    display: table-cell;
+    padding: 10px;
+}
+label,
+input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+label {
+    padding-right: 10px;
+}
