@@ -26,18 +26,19 @@ let bufferDocument = new DocumentFragment();
  *
 */
 function createNavBar(){
-  let navItemList = document.getElementsByClassName('landing__container');
-  for(navItem of navItemList){
-    let li = document.createElement('li'); /* create new <li> */
-    let newAnchor = document.createElement('a'); /* create new <a> */
-    newAnchor.href = '#' + document.navItem.name; /* set <a href=''> */
-    newAnchor.innerHTML = document.navItem.text; /* set link text */
+  const navItemList = document.getElementsByTagName('section');
+  for(const navItem of navItemList){
+    const id = navItem.getAttribute('id'); /* get id of section */
+    const navName = navItem.getAttribute('data-nav'); /* get data-nav of section */
+    const li = document.createElement('li'); /* create new <li> */
+    const newAnchor = document.createElement('a'); /* create new <a> */
+    newAnchor.setAttribute('id',`${id}NavLink`);
+    newAnchor.setAttribute('localName',id);
+    newAnchor.href = `#${id}` /* set <a href=''> */
+    newAnchor.innerHTML = navName; /* set link text */
     li.appendChild(newAnchor); /* add <a> to <li> */
     bufferDocument.appendChild(li); /* add <li> to DocumentFragment */
   }
-}
-function changeFocus(){
-
 }
 
 /**
@@ -51,9 +52,24 @@ createNavBar();
 navBar.appendChild(bufferDocument);
 
 // Add class 'active' to section when near top of viewport
-
+function changeFocus(newActive){
+  const oldActive = document.getElementsByClassName('active_Selection')[0];
+  oldActive.setAttribute('class','');
+  newActive.setAttribute('class','active_Selection');
+}
 
 // Scroll to anchor ID using scrollTO event
+function linkClicked(evt) { // function to listen for when a link is clicked
+  const chosenElement = document.getElementById(evt.target.id);
+  //console.log(chosenElement + " clicked");
+  const chosenLink = chosenElement.getAttribute('localName');
+  //console.log(chosenLink);
+  const chosenAnchor = document.getElementById(chosenLink);
+  //console.log(chosenAnchor);
+  chosenAnchor.scrollTo({behavior: 'smooth'});
+  changeFocus(chosenAnchor);
+
+}
 
 
 /**
@@ -65,5 +81,6 @@ navBar.appendChild(bufferDocument);
 // Build menu
 
 // Scroll to section on link click
+navBar.addEventListener('click', linkClicked);
 
 // Set sections as active
