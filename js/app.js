@@ -17,14 +17,17 @@
  * Define Global Variables
  *
 */
-let navBar = document.getElementById('navbar__list');
-let bufferDocument = new DocumentFragment();
+let navBar = document.getElementById('navbar__list'); // get navbar__list from index.html
+let bufferDocument = new DocumentFragment(); // create fragment as change buffer
+let activeLink = document.getElementsByTagName('a')[0]; // global for link item with class 'active_Selection'
+let activeSection = document.getElementsByTagName('section')[0]; // global for section item with class 'active_Selection'
 
 /**
  * End Global Variables
  * Start Helper Functions
  *
 */
+// create navigation bar from list of sections
 function createNavBar(){
   const navItemList = document.getElementsByTagName('section');
   for(const navItem of navItemList){
@@ -40,6 +43,48 @@ function createNavBar(){
     bufferDocument.appendChild(li); /* add <li> to DocumentFragment */
   }
 }
+// identify active_Selection elements
+function findActive() {
+  const oldActives = document.getElementsByClassName('active_Selection');
+  activeSection = document.getElementsByClassName('active_Selection')[1];
+  activeLink = document.getElementsByClassName('active_Selection')[0];
+}
+
+// remove active_Selection
+function removeFocus() {
+  activeLink.setAttribute('class','');
+  activeSection.setAttribute('class','');
+}
+
+// Add class 'active' to section when near top of viewport
+function changeFocus(newActive,newLink){
+//  removeFocus();
+  newLink.setAttribute('class','active_Selection');
+  newActive.setAttribute('class','active_Selection');
+}
+
+// compare pageTop to top of each section
+function get(last_known_scroll_position) {
+  const sectionList = document.getElementsByTagName('section'); // get list of sections
+  let viewportTop = window.visualViewport.pageTop; // get current top value of viewport
+  let viewportMid = (window.visualViewport.height / 2) + viewportTop;
+  let viewportBottom = window.visualViewport.height + viewportTop;
+  for(sectionItem of sectionList){ // compare top value of each section to viewportTop
+    let bounding = sectionItem.getBoundingClientRect();
+    let variance = viewportTop - bounding.top;
+    let sectionItemID = sectionItem.id;
+    let sectionItemLink = document.getElementById(`${sectionItemID}NavLink`);
+    if(viewportTop < bounding.top && bounding.top < viewportMid) {
+//      console.log(`${bounding}`)
+//      console.log(sectionItem,sectionItemLink);
+      changeFocus(sectionItem,sectionItemLink);
+    } else if (viewportMid < bounding.bottom) {
+      removeFocus();
+    } else if (bounding.top < viewportMid) {
+      removeFocus();
+    }
+  }
+}
 
 /**
  * End Helper Functions
@@ -51,12 +96,6 @@ function createNavBar(){
 createNavBar();
 navBar.appendChild(bufferDocument);
 
-// Add class 'active' to section when near top of viewport
-function changeFocus(newActive){
-  const oldActive = document.getElementsByClassName('active_Selection')[0];
-  oldActive.setAttribute('class','');
-  newActive.setAttribute('class','active_Selection');
-}
 
 // Scroll to anchor ID using scrollTO event
 function linkClicked(evt) { // function to listen for when a link is clicked
@@ -67,7 +106,9 @@ function linkClicked(evt) { // function to listen for when a link is clicked
   const chosenAnchor = document.getElementById(chosenLink);
   //console.log(chosenAnchor);
   chosenAnchor.scrollTo({behavior: 'smooth'});
-  changeFocus(chosenAnchor);
+  findActive();
+  removeFocus();
+  changeFocus(chosenAnchor,chosenElement);
 
 }
 
@@ -84,3 +125,7 @@ function linkClicked(evt) { // function to listen for when a link is clicked
 navBar.addEventListener('click', linkClicked);
 
 // Set sections as active
+/* window.addEventListener('scroll', function(e) {
+  let last_known_scroll_position = window.scrollY;
+  get(last_known_scroll_position);
+}); */

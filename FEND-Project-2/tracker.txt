@@ -8,10 +8,10 @@ Symbol Legend:
   ! issue
 
 List Items:
-  1) + get list of section items for building nav bar
-  2) + build nav bar
+  1) = get list of section items for building nav bar
+  2) = build nav bar
   3) + identify active_Selection
-  4) + differentiate active_Selection post
+  4) = differentiate active_Selection post
   5) + differentiate active_Selection nav bar
-  6) + nav bar selection moves viewport to correct section
+  6) = nav bar selection moves viewport to correct section
   7) + viewport selection updates active_Selection

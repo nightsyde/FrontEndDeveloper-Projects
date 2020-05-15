@@ -208,6 +208,10 @@ section.active_Selection .landing__container::after {
     animation: rotate 5s linear 0s infinite forwards reverse;
 }
 
+a.active_Selection {
+  border: 2px solid red;
+  background: #ddd;
+}
 /* Section Active Styles Keyframe Animations */
 @keyframes rotate {
 	from {
