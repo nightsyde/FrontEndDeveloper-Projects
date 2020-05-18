@@ -109,6 +109,7 @@ setActive();
 
 // Scroll to anchor ID using scrollTO event
 function linkClicked(evt) { // function to listen for when a link is clicked
+  evt.preventDefault();
   removeFocus();
   activeLink = document.getElementById(evt.target.id);
   //console.log(chosenElement + " clicked");
@@ -116,7 +117,7 @@ function linkClicked(evt) { // function to listen for when a link is clicked
   //console.log(chosenLink);
   activeSection = document.getElementById(chosenLink);
   //console.log(chosenAnchor);
-  activeSection.scrollTo({behavior: 'smooth'});
+  activeSection.scrollIntoView({behavior: 'smooth'});
   changeFocus();
 
 }
