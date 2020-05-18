@@ -39,7 +39,7 @@ function createNavBar(){
     newAnchor.setAttribute('localName',id); // set 'localName' attribute of new <a>
     newAnchor.href = `#${id}`; // set <a href=''>
     newAnchor.innerHTML = navName; // set link text
-        li.appendChild(newAnchor); // add <a> to <li>
+    li.appendChild(newAnchor); // add <a> to <li>
     bufferDocument.appendChild(li); // add <li> to DocumentFragment
   }
 }
@@ -61,7 +61,6 @@ function removeFocus() {
 }
 // Add class 'active' to section when near top of viewport
 function changeFocus(){
-//  removeFocus();
   activeLink.setAttribute('class','active_Selection'); // assign active link to 'active_Selection' 'class'
   activeSection.setAttribute('class','active_Selection'); // assign active section to 'active_Selection' 'class'
 }
@@ -87,7 +86,7 @@ function get(last_known_scroll_position) {
     let sectionItemID = sectionItem.id;
     let sectionItemLink = document.getElementById(`${sectionItemID}NavLink`);
     if(isInView(sectionItem)) { // is the section visible?
-      removeFocus(); 
+      removeFocus();
       activeLink = sectionItemLink;
       activeSection = sectionItem;
       changeFocus();
