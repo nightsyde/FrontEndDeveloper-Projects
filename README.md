@@ -15,3 +15,4 @@ For specific, detailed instructions, look at the project instructions in the Uda
 
 ## Version Updates
 v0.0 Initial Code and Project Tracker
+v1.0 Working copy uploaded to Git Pages for review
