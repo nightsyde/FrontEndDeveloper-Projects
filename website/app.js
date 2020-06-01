@@ -1,6 +1,6 @@
 /* Global Variables */
 let bufferDocument = new DocumentFragment(); // create fragment as change buffer
-const homeURL = '';
+const homeURL = '../';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
