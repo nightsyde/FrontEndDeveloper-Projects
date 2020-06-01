@@ -7,7 +7,7 @@ let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // client side code for api
-let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
+let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
 let apiKey = '&appid=e7e66ceeab7188cf96ef0bbe2e64b9ac';
 
 document.getElementById('generate').addEventListener('click', performAction);
