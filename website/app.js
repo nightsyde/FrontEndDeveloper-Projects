@@ -1,6 +1,6 @@
 /* Global Variables */
 let bufferDocument = new DocumentFragment(); // create fragment as change buffer
-
+const homeURL = '';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -56,7 +56,7 @@ const getWeather = async (baseURL, zipCode, apiKey)=>{
 }
 
 // Post data to server cache
-const postData = async ( url = 'http://localhost:9000', data = {})=>{
+const postData = async ( url = homeURL, data = {})=>{
     // console.log(data);
     const response = await fetch(url, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -77,7 +77,7 @@ const postData = async ( url = 'http://localhost:9000', data = {})=>{
     }
 }
 
-const reportProjectData = async (url = 'http://localhost:9000', data = {}) =>{
+const reportProjectData = async (url = homeURL, data = {}) =>{
   const response = await fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     credentials: 'same-origin', // include, *same-origin, omit
