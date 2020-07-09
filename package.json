@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node src/server/index.js",
     "build": "webpack",
     "build-prod": "webpack --config webpack.prod.js",

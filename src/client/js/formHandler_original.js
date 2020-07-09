@@ -1,6 +1,5 @@
-const baseURL = "http://localhost";
 const portID = 9000;
-function handleSubmit(event) {
+function handleSubmit2(event) {
     event.preventDefault()
 
     // check what text was put into the form field
@@ -8,11 +7,11 @@ function handleSubmit(event) {
     Client.checkForName(formText)
 
     console.log("::: Form Submitted :::")
-    fetch(`${baseURL}:${portID}/`)
+    fetch(`http://localhost:${portID}/test`)
     .then(res => res.json())
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message
     })
 }
 
-export { handleSubmit }
+export { handleSubmit2 }

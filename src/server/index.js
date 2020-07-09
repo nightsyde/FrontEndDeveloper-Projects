@@ -30,3 +30,16 @@ app.listen(portID, function () {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 });
+
+app.get('/bioFetch' function (req, res) {
+  var projectData = function (
+    textapi.entities({
+      'text': req
+    },
+    function(error, response) {
+      if (error === null) {
+        console.log(response);
+      }
+    });
+  res.send(projectData);
+})
