@@ -6,7 +6,7 @@
 = Webpack Loaders and Plugins
 + Install and configure Jest
 + Create and modify layouts and page design
-+ Set up Service workers
+= Set up Service workers
 + Set up and verify APIs requests to external urls
 + Set up Aylien
 + Deploy ( [Netlify](https://www.netlify.com/) or [Heroku](https://www.heroku.com/) )

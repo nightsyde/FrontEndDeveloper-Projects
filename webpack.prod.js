@@ -20,15 +20,15 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          quiet: true,
-        }
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      //   options: {
+      //     quiet: true,
+      //   }
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -72,6 +72,28 @@ module.exports = {
         protectWebpackAssets: false
     }),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
-    new WorkboxPlugin.GenerateSW()
+    new WorkboxPlugin.GenerateSW({
+      // Do not precache images
+      exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+
+      // Define runtime caching rules.
+      runtimeCaching: [{
+        // Match any request that ends with .png, .jpg, .jpeg or .svg.
+        urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+
+        // Apply a cache-first strategy.
+        handler: 'CacheFirst',
+
+        options: {
+          // Use a custom cache name.
+          cacheName: 'images',
+
+          // Only cache 10 images.
+          expiration: {
+            maxEntries: 10,
+          },
+        },
+      }],
+    })
   ]
 }

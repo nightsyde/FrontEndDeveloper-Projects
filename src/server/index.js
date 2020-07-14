@@ -4,6 +4,7 @@ var path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
 const portID = 9000;
+const projectData = []
 
 const app = express();
 // Require the Aylien npm package
@@ -28,18 +29,30 @@ app.listen(portID, function () {
 });
 
 app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-});
-
-app.get('/bioFetch' function (req, res) {
-  var projectData = function (
-    textapi.entities({
-      'text': req
-    },
+//    res.send(mockAPIResponse)
+    const infoRequest = `Captain ${req}`;
+    console.log(infoRequest);
+    res.send(textapi.entities({
+      'text': infoRequest
+      },
     function(error, response) {
       if (error === null) {
         console.log(response);
       }
-    });
+    }));
+    console.log(res);
+
+
+});
+
+app.get('', function (req, res) {
+  const projectData = textapi.entities({
+    'text': req
+    },
+  function(error, response) {
+    if (error === null) {
+      console.log(response);
+    }
+  });
   res.send(projectData);
 })
