@@ -30,7 +30,7 @@ app.listen(portID, function () {
 
 app.get('/test', function (req, res) {
 //    res.send(mockAPIResponse)
-    const infoRequest = `Captain ${req}`;
+    const infoRequest = `Captain ${req.body}`;
     console.log(infoRequest);
     res.send(textapi.entities({
       'text': infoRequest
@@ -40,7 +40,7 @@ app.get('/test', function (req, res) {
         console.log(response);
       }
     }));
-    console.log(res);
+    // console.log(res);
 
 
 });
