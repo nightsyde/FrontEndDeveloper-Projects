@@ -8,8 +8,8 @@ const projectData = []
 
 const app = express();
 // Require the Aylien npm package
-var aylien = require("aylien_textapi");
-var textapi = new aylien({
+var AYLIENTextAPI = require("aylien_textapi");
+var textapi = new AYLIENTextAPI({
   application_id: process.env.API_ID,
   application_key: process.env.API_KEY
 });
@@ -20,39 +20,36 @@ console.log(__dirname);
 
 app.get('/', function (req, res) {
     // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile(path.resolve('src/client/views/index.html'));
 });
 
 // designates what port the app will listen to for incoming requests
 app.listen(portID, function () {
-    console.log(`Example app listening on port ${portID}!`)
+    console.log(`Example app listening on port ${portID}!`);
 });
 
-app.get('/test', function (req, res) {
-//    res.send(mockAPIResponse)
-    const infoRequest = `Captain ${req.body}`;
-    console.log(infoRequest);
-    res.send(textapi.entities({
-      'text': infoRequest
-      },
-    function(error, response) {
-      if (error === null) {
-        console.log(response);
-      }
-    }));
-    // console.log(res);
 
-
+app.post('/data', function (req,res){
+  const infoRequest = req.query.information;
+  console.log(infoRequest);
+  const responseInfo = getData(infoRequest);
+  console.log("response: "+responseInfo);
+  res.send({responseInfo});
 });
 
-app.get('', function (req, res) {
-  const projectData = textapi.entities({
-    'text': req
-    },
-  function(error, response) {
+function getData(dataSet){
+  console.log(textapi.application_id);
+  console.log(textapi.application_key);
+  let apiRequest = textapi.entities({
+    text: dataSet
+  }, function(error, response) {
     if (error === null) {
-      console.log(response);
+      Object.keys(response.entities).forEach(function(e) {
+        console.log(e + ": " + response.entities[e].join(","));
+      });
+    }else{
+      console.log(error);
     }
   });
-  res.send(projectData);
-})
+  console.log("apiRequest: "+apiRequest);
+}

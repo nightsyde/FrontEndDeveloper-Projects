@@ -1,6 +1,6 @@
 const baseURL = "http://localhost";
 const portID = 9000;
-
+const totalUrl = `${baseURL}:${portID}/data`
 
 
 function handleSubmit(event) {
@@ -17,18 +17,34 @@ function handleSubmit(event) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(formText), // body data type must match "Content-Type" header
     }
+    console.log(initInfo);
 
     console.log("::: Form Submitted :::");
-    console.log(`${formText} ${baseURL} ${portID}`);
-    fetch(`${baseURL}:${portID}/test`,initInfo)
+    console.log(`${totalUrl} ${formText} ${initInfo} `);
+    let requestURL = `${totalUrl}/?information=${formText}`;
+    fetch(requestURL,initInfo)
     .then(res => res.json())
     .then(function(res) {
       document.getElementById('results').innerHTML = res.message;
-        console.log(res);
+      console.log(res);
     });
-    console.log(initInfo);
+    getData(totalUrl,formText);
 
 
+}
+
+const getData = async (totalUrl, formText)=>{
+  let requestURL = `${totalUrl}/?information=${formText}`;
+  console.log(requestURL);
+  const res = await fetch(requestURL);
+  console.log(res);
+  try {
+    const data = await res.json();
+    console.log(data);
+
+  }catch(error) {
+    console.log("error", error);  // appropriately handle the error
+  }
 }
 
 
