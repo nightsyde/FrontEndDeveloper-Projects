@@ -17,10 +17,11 @@ function handleSubmit(event) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(formText), // body data type must match "Content-Type" header
     }
+    console.log("formHandler 20 initInfo: ");
     console.log(initInfo);
 
     console.log("::: Form Submitted :::");
-    console.log(`${totalUrl} ${formText} ${initInfo} `);
+    console.log(`formHandler 23: ${totalUrl} ${formText} ${initInfo} `);
     let requestURL = `${totalUrl}/?information=${formText}`;
     fetch(requestURL,initInfo)
     .then(res => res.json())
@@ -37,13 +38,13 @@ const getData = async (totalUrl, formText)=>{
   let requestURL = `${totalUrl}/?information=${formText}`;
   console.log(requestURL);
   const res = await fetch(requestURL);
-  console.log(res);
+  console.log("formHandler 40 res: "+res);
   try {
     const data = await res.json();
-    console.log(data);
+    console.log("formHandler 43 "+data);
 
   }catch(error) {
-    console.log("error", error);  // appropriately handle the error
+    console.log("formHandler 46 error", error);  // appropriately handle the error
   }
 }
 

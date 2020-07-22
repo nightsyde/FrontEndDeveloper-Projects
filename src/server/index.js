@@ -31,15 +31,15 @@ app.listen(portID, function () {
 
 app.post('/data', function (req,res){
   const infoRequest = req.query.information;
-  console.log(infoRequest);
+  console.log("server 34 infoRequest: "+infoRequest);
   const responseInfo = getData(infoRequest);
-  console.log("response: "+responseInfo);
+  console.log("server 36 response: "+responseInfo);
   res.send({responseInfo});
 });
 
 function getData(dataSet){
-  console.log(textapi.application_id);
-  console.log(textapi.application_key);
+  console.log("server 41 apiID: "+textapi.application_id);
+  console.log("server 42 apiKey: "+textapi.application_key);
   let apiRequest = textapi.entities({
     text: dataSet
   }, function(error, response) {
@@ -48,8 +48,8 @@ function getData(dataSet){
         console.log(e + ": " + response.entities[e].join(","));
       });
     }else{
-      console.log(error);
+      console.log("server 51 error: "+error);
     }
   });
-  console.log("apiRequest: "+apiRequest);
+  console.log("server 54 apiRequest: "+apiRequest);
 }
