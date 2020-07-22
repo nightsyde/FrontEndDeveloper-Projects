@@ -18,6 +18,14 @@ app.use(express.static('dist'));
 
 console.log(__dirname);
 
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
+
+console.log(result.parsed)
+
 app.get('/', function (req, res) {
     // res.sendFile('dist/index.html')
     res.sendFile(path.resolve('src/client/views/index.html'));
