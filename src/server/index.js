@@ -8,11 +8,43 @@ const projectData = []
 
 const app = express();
 // Require the Aylien npm package
-var AYLIENTextAPI = require("aylien_textapi");
-var textapi = new AYLIENTextAPI({
-  application_id: process.env.API_ID,
-  application_key: process.env.API_KEY
-});
+var AylienNewsApi = require("aylien-news-api");
+
+var defaultClient = AylienNewsApi.ApiClient.instance;
+
+var app_id = defaultClient.authentications["app_id"];
+app_id.apiKey = process.env["NEWSAPI_APP_ID"];
+
+var app_key = defaultClient.authentications["app_key"];
+app_key.apiKey = process.env["NEWSAPI_APP_KEY"];
+
+var api = new AylienNewsApi.DefaultApi();
+
+var opts = {
+  title: "trump",
+  sortBy: "social_shares_count.facebook",
+  notLanguage: ["en"],
+  publishedAtStart: "NOW-7DAYS",
+  publishedAtEnd: "NOW",
+  entitiesBodyLinksDbpedia: [
+    "http://dbpedia.org/resource/Donald_Trump",
+    "http://dbpedia.org/resource/Hillary_Rodham_Clinton"
+  ]
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log("API called successfully. Returned data: ");
+    console.log("========================================");
+    for (var i = 0; i < data.stories.length; i++) {
+      console.log(data.stories[i].title + " / " + data.stories[i].source.name);
+    }
+  }
+};
+
+api.listStories(opts, callback);
 
 app.use(express.static('dist'));
 
@@ -27,8 +59,8 @@ if (result.error) {
 console.log(result.parsed)
 
 app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'));
+    res.sendFile('dist/index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'));
 });
 
 // designates what port the app will listen to for incoming requests
@@ -37,27 +69,19 @@ app.listen(portID, function () {
 });
 
 
-app.post('/data', function (req,res){
+app.post('/data', async function (req,res){
   const infoRequest = req.query.information;
-  console.log("server 34 infoRequest: "+infoRequest);
-  const responseInfo = getData(infoRequest);
-  console.log("server 36 response: "+responseInfo);
-  res.send({responseInfo});
+  console.log("server 42 infoRequest: ");
+  console.log(infoRequest);
+  await res.send(await textapi.entities({
+    text: infoRequest
+    }, function(error, response) {
+      if (error === null) {
+        Object.keys(response.entities).forEach(function(e) {
+          console.log(e + ": " + response.entities[e].join(","));
+        });
+      }else{
+        console.log("server 57 error: "+error);
+      }
+    }));
 });
-
-function getData(dataSet){
-  console.log("server 41 apiID: "+textapi.application_id);
-  console.log("server 42 apiKey: "+textapi.application_key);
-  let apiRequest = textapi.entities({
-    text: dataSet
-  }, function(error, response) {
-    if (error === null) {
-      Object.keys(response.entities).forEach(function(e) {
-        console.log(e + ": " + response.entities[e].join(","));
-      });
-    }else{
-      console.log("server 51 error: "+error);
-    }
-  });
-  console.log("server 54 apiRequest: "+apiRequest);
-}
