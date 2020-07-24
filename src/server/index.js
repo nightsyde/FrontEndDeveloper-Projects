@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 const path = require('path');
 const express = require('express');
-const mockAPIResponse = require('./mockAPI.js');
 const portID = 9000;
 const projectData = []
 
