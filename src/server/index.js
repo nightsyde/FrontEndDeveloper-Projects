@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
-var path = require('path');
+const path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
 const portID = 9000;
@@ -8,19 +8,19 @@ const projectData = []
 
 const app = express();
 // Require the Aylien npm package
-var AylienNewsApi = require("aylien-news-api");
+const AylienNewsApi = require("aylien-news-api");
 
-var defaultClient = AylienNewsApi.ApiClient.instance;
+const defaultClient = AylienNewsApi.ApiClient.instance;
 
-var app_id = defaultClient.authentications["app_id"];
+const app_id = defaultClient.authentications["app_id"];
 app_id.apiKey = process.env["NEWSAPI_APP_ID"];
 
-var app_key = defaultClient.authentications["app_key"];
+const app_key = defaultClient.authentications["app_key"];
 app_key.apiKey = process.env["NEWSAPI_APP_KEY"];
 
-var api = new AylienNewsApi.DefaultApi();
+const api = new AylienNewsApi.DefaultApi();
 
-var opts = {
+let opts = {
   title: "trump",
   sortBy: "social_shares_count.facebook",
   notLanguage: ["en"],
@@ -32,7 +32,7 @@ var opts = {
   ]
 };
 
-var callback = function(error, data, response) {
+let callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
@@ -44,7 +44,7 @@ var callback = function(error, data, response) {
   }
 };
 
-api.listStories(opts, callback);
+// api.listStories(opts, callback);
 
 app.use(express.static('dist'));
 
@@ -73,15 +73,5 @@ app.post('/data', async function (req,res){
   const infoRequest = req.query.information;
   console.log("server 42 infoRequest: ");
   console.log(infoRequest);
-  await res.send(await textapi.entities({
-    text: infoRequest
-    }, function(error, response) {
-      if (error === null) {
-        Object.keys(response.entities).forEach(function(e) {
-          console.log(e + ": " + response.entities[e].join(","));
-        });
-      }else{
-        console.log("server 57 error: "+error);
-      }
-    }));
+  await res.send(await api.listStories(opts, callback));
 });
