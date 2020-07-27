@@ -16,13 +16,13 @@
   "license": "ISC",
   "description": "npm stack for fend module 4",
   "dependencies": {
-    "aylien-news-api": "^4.1.0",
+    "aylien-news-api": "^4.1.1",
     "aylien_textapi": "^0.7.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "minimist": "^1.2.5",
     "mkdir": "^0.0.2",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {

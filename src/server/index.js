@@ -21,17 +21,13 @@ const api = new AylienNewsApi.DefaultApi();
 
 let opts = {
   title: "trump",
-  sortBy: "social_shares_count.facebook",
   notLanguage: ["en"],
   publishedAtStart: "NOW-7DAYS",
   publishedAtEnd: "NOW",
-  entitiesBodyLinksDbpedia: [
-    "http://dbpedia.org/resource/Donald_Trump",
-    "http://dbpedia.org/resource/Hillary_Rodham_Clinton"
-  ]
 };
 
 let callback = function(error, data, response) {
+  console.log("server 30: callback");
   if (error) {
     console.error(error);
   } else {
@@ -70,7 +66,10 @@ app.listen(portID, function () {
 
 app.post('/data', async function (req,res){
   const infoRequest = req.query.information;
-  console.log("server 42 infoRequest: ");
+  console.log("server 73 infoRequest: ");
   console.log(infoRequest);
-  await res.send(await api.listStories(opts, callback));
+  opts.title = infoRequest;
+  console.log("server 76 opts:");
+  console.log(opts);
+  res.send(await api.listStories(opts, callback));
 });

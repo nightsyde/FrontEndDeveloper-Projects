@@ -10,11 +10,11 @@ function checkForName(inputText) {
         "Pike"
     ];
 
-    if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
-        }
+    // if(names.includes(inputText)) {
+    //     alert("Welcome, Captain!")
+    //     }
 
-    
+
 }
 
 export { checkForName }

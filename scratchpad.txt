@@ -1,1 +1,9 @@
-Aylien API: AppID 18f79a11 endpoint https://api.aylien.com/api/v1 apiKey 4b1a36d7078396c716ac7bfa4f3b14ec
+Aylien Text API:
+AppID 18f79a11
+apiKey 4b1a36d7078396c716ac7bfa4f3b14ec
+endpoint https://api.aylien.com/api/v1
+
+Aylien News API:
+AppID: c42feefc
+API KEY: 80a6c54f9f551c9b48b4d505279da58a
+endpoint: https://api.aylien.com/news
