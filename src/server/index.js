@@ -3,7 +3,7 @@ dotenv.config();
 const path = require('path');
 const express = require('express');
 const portID = 9000;
-const projectData = []
+const projectData = {}
 
 const app = express();
 // Require the Aylien npm package
@@ -21,25 +21,11 @@ const api = new AylienNewsApi.DefaultApi();
 
 let opts = {
   title: "trump",
-  notLanguage: ["en"],
+  language: ["en"],
   publishedAtStart: "NOW-7DAYS",
   publishedAtEnd: "NOW",
+  sort_by: 'relevance',
 };
-
-let callback = function(error, data, response) {
-  console.log("server 30: callback");
-  if (error) {
-    console.error(error);
-  } else {
-    console.log("API called successfully. Returned data: ");
-    console.log("========================================");
-    for (var i = 0; i < data.stories.length; i++) {
-      console.log(data.stories[i].title + " / " + data.stories[i].source.name);
-    }
-  }
-};
-
-// api.listStories(opts, callback);
 
 app.use(express.static('dist'));
 
@@ -66,10 +52,24 @@ app.listen(portID, function () {
 
 app.post('/data', async function (req,res){
   const infoRequest = req.query.information;
-  console.log("server 73 infoRequest: ");
-  console.log(infoRequest);
+  // console.log("server 71 infoRequest: ");
+  // console.log(infoRequest);
   opts.title = infoRequest;
-  console.log("server 76 opts:");
-  console.log(opts);
-  res.send(await api.listStories(opts, callback));
+  // console.log("server 74 opts:");
+  // console.log(opts);
+  res.send(api.listStories(opts, (error, data, response)=> {
+    console.log("server 30: callback");
+    if (error) {
+      console.error(error);
+    } else {
+      console.log("API called successfully. Returned data: ");
+      console.log("========================================");
+      for (var i = 0; i < data.stories.length; i++) {
+        console.log(data.stories[i].title + " / " + data.stories[i].source.name);
+
+      }
+      
+      return projectData;
+    }
+  }));
 });

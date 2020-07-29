@@ -21,22 +21,27 @@ const getData = async (totalUrl, formText)=>{
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(formText), // body data type must match "Content-Type" header
   }
-  console.log(`formHandler 24: ${totalUrl}`);
-  console.log("formHandler 25 initInfo: ");
-  console.log(initInfo);
-  console.log(requestURL);
+  // console.log(`formHandler 24: ${totalUrl}`);
+  // console.log("formHandler 25 initInfo: ");
+  // console.log(initInfo);
+  // console.log(requestURL);
   const res = await fetch(requestURL,initInfo);
-  console.log("formHandler 29 res: "+res);
+  console.log("formHandler 29 res: ");
+  console.log(res);
   try {
     const data = res.json();
-    document.getElementById('results').innerHTML = res.message;
     console.log(res);
-    console.log("formHandler 34 "+data);
+    console.log("formHandler 35:");
+    console.log("API called successfully. Returned data: ");
+    console.log("========================================");
+    for (var i = 0; i < data.stories.length; i++) {
+      console.log(data.stories[i].title + " / " + data.stories[i].source.name);
+    }
+    document.getElementById('results').innerHTML = res.body;
+
   }catch(error) {
-    console.log("formHandler 36 error", error);  // appropriately handle the error
+    console.log("formHandler 38 error", error);  // appropriately handle the error
   }
 }
-
-
 
 export { handleSubmit }
