@@ -8,7 +8,7 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value;
-    Client.checkForName(formText);
+//    Client.checkForName(formText);
     console.log("::: Form Submitted :::");
     getData(totalUrl,formText);
 }
@@ -21,17 +21,11 @@ const getData = async (totalUrl, formText)=>{
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(formText), // body data type must match "Content-Type" header
   }
-  // console.log(`formHandler 24: ${totalUrl}`);
-  // console.log("formHandler 25 initInfo: ");
-  // console.log(initInfo);
-  // console.log(requestURL);
   const res = await fetch(requestURL,initInfo);
-  console.log("formHandler 29 res: ");
-  console.log(res);
   try {
     const data = res.json();
     console.log(res);
-    console.log("formHandler 35:");
+    console.log("formHandler 28:");
     console.log("API called successfully. Returned data: ");
     console.log("========================================");
     for (var i = 0; i < data.stories.length; i++) {
@@ -40,7 +34,7 @@ const getData = async (totalUrl, formText)=>{
     document.getElementById('results').innerHTML = res.body;
 
   }catch(error) {
-    console.log("formHandler 38 error", error);  // appropriately handle the error
+    console.log("formHandler 37 error", error);  // appropriately handle the error
   }
 }
 

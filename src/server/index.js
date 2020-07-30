@@ -52,12 +52,8 @@ app.listen(portID, function () {
 
 app.post('/data', async function (req,res){
   const infoRequest = req.query.information;
-  // console.log("server 71 infoRequest: ");
-  // console.log(infoRequest);
   opts.title = infoRequest;
-  // console.log("server 74 opts:");
-  // console.log(opts);
-  res.send(api.listStories(opts, (error, data, response)=> {
+  api.listStories(opts, (error, data, response)=> {
     console.log("server 30: callback");
     if (error) {
       console.error(error);
@@ -66,10 +62,11 @@ app.post('/data', async function (req,res){
       console.log("========================================");
       for (var i = 0; i < data.stories.length; i++) {
         console.log(data.stories[i].title + " / " + data.stories[i].source.name);
-
+        projectData[i] = data.stories[i];
       }
-      
-      return projectData;
+      console.log(projectData);
+      res.send(projectData);
     }
-  }));
+  }
+  );
 });
