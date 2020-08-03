@@ -2,6 +2,8 @@ const baseURL = "http://localhost";
 const portID = 9000;
 const totalUrl = `${baseURL}:${portID}/data`
 
+import 'regenerator-runtime/runtime'
+
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -34,7 +36,7 @@ const getData = async (totalUrl, formText)=>{
     document.getElementById('results').innerHTML = res.body;
 
   }catch(error) {
-    console.log("formHandler 37 error", error);  // appropriately handle the error
+    console.log("formHandler 39 error", error);  // appropriately handle the error
   }
 }
 
