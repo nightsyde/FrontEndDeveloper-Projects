@@ -34,26 +34,6 @@ if (result.error) {
 }
 console.log(result.parsed)
 
-function anGetData(req,res) {
-  opts.title = req;
-  return new Promise(resolve =>{
-    api.listStories(opts, (error, data, response)=> {
-      console.log("server 57: callback");
-      if (error) {
-        console.error(error);
-      } else {
-        console.log("API called successfully. Returned data: ");
-        console.log("========================================");
-        for (var i = 0; i < data.stories.length; i++) {
-          console.log(data.stories[i].title + " / " + data.stories[i].source.name);
-          projectData[i] = data.stories[i];
-        }
-        console.log("projectData");
-        response = projectData;
-      }
-    })
-  });
-}
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
@@ -66,8 +46,24 @@ app.listen(portID, function () {
 
 
 app.post('/data', async function(req,res){
-  infoRequest = req.query.information;
-  var postResponse = await anGetData(infoRequest);
-  console.log("server 71: "+postResponse);
-  res.send(postResponse);
+  opts.title = req.query.information;
+  api.listStories(opts, (error, data, response)=> {
+      console.log("server 57: callback");
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("API called successfully. Returned data: ");
+        console.log("========================================");
+        for (var i = 0; i < data.stories.length; i++) {
+          console.log(data.stories[i].title + " / " + data.stories[i].source.name);
+          projectData[i] = data.stories[i];
+        }
+        // console.log(projectData);
+        response = projectData;
+        console.log("server 63: ");
+        console.log(projectData);
+        res.send(projectData);
+      }
+  });
+  // res.send(projectData);
 });
