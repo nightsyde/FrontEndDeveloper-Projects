@@ -1,6 +1,6 @@
 # Project 4: Evaluate a News Article with Natural Language Processing
 
-Project is meant to practice using API's and server/client communication.
+Project is meant to practice using API's and server/client communication. Form searches for news items with form data included and returns up to 10 stories.
 
 # Task List
 = Set up Webpack
