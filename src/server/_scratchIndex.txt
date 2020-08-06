@@ -1,0 +1,28 @@
+function anGetData(req,res) {
+  opts.title = req;
+  return new Promise(resolve =>{
+    api.listStories(opts, (error, data, response)=> {
+      console.log("server 57: callback");
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("API called successfully. Returned data: ");
+        console.log("========================================");
+        for (var i = 0; i < data.stories.length; i++) {
+          console.log(data.stories[i].title + " / " + data.stories[i].source.name);
+          projectData[i] = data.stories[i];
+        }
+        console.log(projectData);
+        response = projectData;
+      }
+    })
+  });
+}
+
+
+app.post('/data', async function(req,res){
+  infoRequest = req.query.information;
+  var postResponse = await anGetData(infoRequest);
+  console.log("server 71: "+postResponse);
+  res.send(postResponse);
+});

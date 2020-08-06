@@ -1,14 +1,13 @@
-# Project 4: Evaluate a News Article with Natural Language Processing
+#Udacity Front End Developer Project 5- Travel App
 
-Project is meant to practice using API's and server/client communication. Form searches for news items with form data included and returns up to 10 stories.
+## Overview
+Supposed 'Capstone' project to bring together everything that was allegedly taught during the course, but definitely demonstrating the student's ability to perform. Application will take user input for location and date, evaluate the data, then update the page with weather data and a picture of the location.
 
-# Task List
-= Set up Webpack
-= Sass styles
-= Webpack Loaders and Plugins
-= Install and configure Jest
-x Create and modify layouts and page design
-= Set up Service workers
-= Set up and verify APIs requests to external urls
-= Set up Aylien
-x Deploy ( [Netlify](https://www.netlify.com/) or [Heroku](https://www.heroku.com/) )
+## Project Tracking
++ Get API information for GeoNames, Pixabay, and WeatherBit
++ Set up project folders
++ Lay out UI page
++ Create placeholder variables in server.js for data retrieved by each API
++ Create form to transform parsed and aggregated API data from server to client
++ Parse aggregated API data from server and build updated UI page
++ Make sure UI page clears between requests

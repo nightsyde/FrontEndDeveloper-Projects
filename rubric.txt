@@ -1,56 +1,123 @@
+Udacity Logo
+Logout
 PROJECT SPECIFICATION
-Evaluate a news article with Natural Language Processing
+FEND Capstone - Travel App
 
-Project Architecture
+Development Environment and Architecture
 
 CRITERIA
 MEETS SPECIFICATIONS
 Architecture
 
-Project should have a structure like the one in the lessons. All files shown must be present and the app must successfully render a home page when started via an npm command like ‘npm run start’
+The project should have a structure like the one shown below. All files shown must be present (Webpack may be split into multiple config files, and names may differ) and the app must successfully render a home page with clear design and functionality added when index.html is loaded in the browser. No errors should display in console.
 
-Other requirements:
+- Root:
+  - `package.json`
+  - `readme.md`
+  - `webpack.config.js`
+  - src folder
+    - server folder
+      - `server.js` (name will vary)
+    - client folder
+      - `index.js`
+      - html/views folder
+        - `index.html`
+      - js folder
+        - `app.js` (name will vary)
+      - styles folder
+        - `style.scss` (name will vary - may be broke into partials)
+Webpack
 
-the Readme file should have non-default text in it that is specific to this project. Doesn’t have to be thorough but should have some basic info. Bonus if correct markdown is used
-
-the git ignore file must contain both the node_modules and dist folders at minimum. Other files can be included.
-
-Configs
-
-Both webpack config files must be present and should be set up similar to the course for development and production.
-
-A build script must run successfully with no errors and generate a dist folder. Bonus if they customized their npm build scripts.
-
-Students should also have a working dev mode, check that webpack dev server is set up and that they have an npm script that starts the server
-
-Content
-
-Only one html file is required, but it must be at src/views/ or src/html. Must contain valid semantic html
-
-There will be a minimum of 2 javascript files in the src/js folder. All files in the js folder must be found by webpack.
-
-There must be a styles or scss folder. The project provides a base file, but the header, footer, form, and main files should be added to by the student, similar to the course.
-
-Functionality
-
-CRITERIA
-MEETS SPECIFICATIONS
-API
-
-The app should make a successful call to the api on form submission. If this is successful, the api keys and response handling were done correctly. You can check that the api keys are found in server.js or a similar node file. It is not acceptable for an api key to be set in a client facing file (like index.js)
-
-Information from the api response must show up in the view. It is not enough for the response to be logged to the console or saved in js, etc..
-
-Offline Functionality
-
-The project must have set up service workers in webpack.
+Webpack config should contain at least 3 scripts, express server, build and test. Additionally, dev server may be included.
 
 Testing
 
-Check that the project has Jest installed, that there is an npm script to run Jest, and that the tests all pass. Every src/js file should have at least one test.
+There should be at least one test for the express server and application javascript
 
-Interactions
+Offline capabilities
 
-The page built can be very simple, but should include:
+The project must have service workers installed.
 
-A single field form that uses the correct html tags and structure. There should be some attempt to validate the form input. Bonus points if you use regex to correctly check for a URL and give back helpful error messages.
+HTML & CSS
+
+CRITERIA
+MEETS SPECIFICATIONS
+Usability
+
+All features are usable across modern desktop, tablet, and phone browsers.
+
+Styling
+
+Styling is set up in a logical way. All interactive elements have hover states.
+
+HTML Structure
+
+HTML structure should be indented properly with classes and ID’s that make sense.
+
+Visual Design
+
+The design should clearly be different from the design used in projects 3 and 4.
+
+API and JS Integration
+
+CRITERIA
+MEETS SPECIFICATIONS
+Server
+
+src > server > server.js
+Server should be a near duplication of project 3 with the exception of additional added member: value pairs.
+
+index.js
+
+src > client > index.js
+At least one function should be imported.
+At least one event listener should be imported.
+(styles referenced in html/css)
+app.js
+
+src > client > js > app.js
+There should be URLS and API Keys for at least 3 APIs, including Geonames, Weatherbit, and Pixabay. You can feel free to use more than 3 APIs.
+There should be a primary object with placeholder member value pairs.
+There should be a primary function that is exported to index.js.
+Extend Options / Ways to Stand Out
+
+At least one option from the Extend your Project/Ways to Stand Out sections have been added. Please add a Note to your reviewer which one you chose to implement, or add into your README.
+
+Documentation
+
+CRITERIA
+MEETS SPECIFICATIONS
+README
+
+A README file is included detailing the app and all dependencies.
+
+Other requirements:
+The Readme file should have non-default text in it that is specific to this project. It doesn’t have to be thorough, but should have some basic info. Bonus points if correct markdown is used.
+
+Comments
+
+Comments are present and effectively explain longer code procedure when necessary.
+
+Code Quality
+
+Code is formatted with consistent, logical, and easy-to-read formatting as described in the Udacity JavaScript Style Guide.
+
+Suggestions to Make Your Project Stand Out!
+At least one of these is required, but the rest are great additional ways to further customize and improve your project!
+
+Add end date and display length of trip.
+Pull in an image for the country from Pixabay API when the entered location brings up no results (good for obscure localities).
+Allow user to add multiple destinations on the same trip.
+Pull in weather for additional locations.
+Allow the user to add hotel and/or flight data.
+Multiple places to stay? Multiple flights?
+Integrate the REST Countries API to pull in data for the country being visited.
+Allow the user to remove the trip.
+Use Local Storage to save the data so that when they close, then revisit the page, their information is still there.
+Instead of just pulling a single day forecast, pull the forecast for multiple days.
+Incorporate icons into forecast.
+Allow user to Print their trip and/or export to PDF.
+Allow the user to add a todo list and/or packing list for their trip.
+Allow the user to add additional trips (this may take some heavy reworking, but is worth the challenge).
+Automatically sort additional trips by countdown.
+Move expired trips to bottom/have their style change so it’s clear it’s expired.

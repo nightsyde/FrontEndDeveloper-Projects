@@ -42,3 +42,25 @@ var req = https.request(options, function (res) {
 });
 
 req.end();
+
+Open Weather
+endpoint: 'https://api.openweathermap.org/data/2.5/weather?zip='
+apiKey: e7e66ceeab7188cf96ef0bbe2e64b9ac
+
+Pixabay
+endpoint: https://pixabay.com/api/?key=<>&q=<subject>&image_type=photo
+API key: 14246493-aa72736588a91c2f68f608bff
+
+GeoNames
+endpoint:
+apiKey:
+
+WeatherBit.io
+endpoint: https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
+apiKey: f77c86657daa470c98eea20e29af9467
+{
+[Description, Required Parameters, Example]
+[Get forecast by lat/lon	lat,lon	&lat=38.123&lon=-78.543]
+[Get forecast by city name,[city, state(optional), country (optional)],[[&city=Raleigh&country=US],[&city=Raleigh,NC],[&city=Raleigh,North+Carolina]]
+[Get forecast by postal code,	[postal_code,country (optional)],[&postal_code=27601&country=US]]
+}

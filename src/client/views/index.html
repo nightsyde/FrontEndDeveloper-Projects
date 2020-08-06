@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Travel Journal</title>
+<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+ <body>
+   <header>
+       <div class="">
+           Logo
+       </div>
+       <div class="">
+           navigation
+       </div>
+   </header>
+   <main>
+     <div id = "app">
+       <div class ="holder headline">
+         Weather Journal App
+       </div>
+       <div class ="holder locationData">
+         <label for="Where are we going?">Enter City or Zipcode here</label>
+         <input type="text" id="locationData" placeholder="enter zip code here">
+       </div>
+       <div class ="holder travelDates">
+         <label for="When do we want to be there?">How are you feeling today?</label>
+         <textarea class= "myInput" id="dataData" placeholder="Enter the departure date here" rows="9" cols="50"></textarea>
+         <button id="generate" type = "submit"> Generate </button>
+       </div>
+       <div class ="holder entry">
+         <div class = "title">Most Recent Entry</div>
+         <div id = "entryHolder">
+           <div id = "date"></div>
+           <div id = "temp"></div>
+           <div id = "content"></div>
+         </div>
+       </div>
+     </div>
+   </main>
+   <footer>
+       <p>This is a footer</p>
+   </footer>
 
-    </head>
-
-    <body>
-
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
-
-        <main>
-            <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" placeholder="Name">
-                    <input type="submit" name="" pattern="[a-zA-Z0-9]+" minlength="4" maxlength="30" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            <section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
-        </main>
-
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-        <script>
-         // Check that service workers are supported
-         if ('serviceWorker' in navigator) {
-             // Use the window load event to keep the page load performant
-             window.addEventListener('load', () => {
-                 navigator.serviceWorker.register('/service-worker.js');
-             });
-         }
-        </script>
-    </body>
+   <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+   </script>
+ </body>
 </html>
