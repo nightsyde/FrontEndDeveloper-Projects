@@ -7,22 +7,9 @@ const portID = 9000;
 const projectData = {};
 let infoRequest = {};
 
-// Require the Aylien npm package
-const AylienNewsApi = require("aylien-news-api");
-const defaultClient = AylienNewsApi.ApiClient.instance;
-const app_id = defaultClient.authentications["app_id"];
-app_id.apiKey = process.env["NEWSAPI_APP_ID"];
-const app_key = defaultClient.authentications["app_key"];
-app_key.apiKey = process.env["NEWSAPI_APP_KEY"];
-const api = new AylienNewsApi.DefaultApi();
+const weatherAPIKEY = process.env["WeatherBitKey"];
+const pixabayAPIKEY = process.env["PixabayKey"];
 
-let opts = {
-  title: "trump",
-  language: ["en"],
-  publishedAtStart: "NOW-7DAYS",
-  publishedAtEnd: "NOW",
-  sort_by: 'relevance',
-};
 
 app.use(express.static('dist'));
 
@@ -44,6 +31,23 @@ app.listen(portID, function () {
     console.log(`Example app listening on port ${portID}!`);
 });
 
+app.get('/weatherCity', async function(req,res) {
+  const location = req.query.location;
+  const fetchURL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${location}&key=${weatherAPIKEY}`;
+  fetch(fetchURL);
+});
+
+app.get('/weatherZIP', async function(req,res) {
+  const location = req.query.location;
+  const fetchURL = `https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=${location}&country=US&key=${weatherAPIKEY}`;
+  fetch(fetchURL);
+});
+
+app.get('/views', async function(req,res) {
+  const location = req.query.location;
+  const fetchURL = `https://pixabay.com/api/?key=${pixabayAPIKEY}&q=${location}&image_type=photo;`
+  fetch(fetchURL)
+});
 
 app.post('/data', async function(req,res){
   opts.title = req.query.information;
