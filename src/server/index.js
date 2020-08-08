@@ -4,11 +4,15 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const portID = 9000;
-const projectData = {};
+let projectData = {};
 let infoRequest = {};
+let location = '';
+let imageData = [];
+
 
 const weatherAPIKEY = process.env["WeatherBitKey"];
 const pixabayAPIKEY = process.env["PixabayKey"];
+const geonamesAPIKEY = process.env["GeoNamesKey"]
 
 
 app.use(express.static('dist'));
@@ -31,43 +35,21 @@ app.listen(portID, function () {
     console.log(`Example app listening on port ${portID}!`);
 });
 
-app.get('/weatherCity', async function(req,res) {
-  const location = req.query.location;
-  const fetchURL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${location}&key=${weatherAPIKEY}`;
-  fetch(fetchURL);
+app.get('/weather', async function(req,res) {
+  console.log("server 39");
+  console.log(weatherAPIKEY)
+  res.send(weatherAPIKEY);
+
 });
 
-app.get('/weatherZIP', async function(req,res) {
-  const location = req.query.location;
-  const fetchURL = `https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=${location}&country=US&key=${weatherAPIKEY}`;
-  fetch(fetchURL);
+app.get('/pictures', async function(req,res) {
+  console.log("server 45");
+  console.log(pixabayAPIKEY)
+  res.send(pixabayAPIKEY);
 });
 
-app.get('/views', async function(req,res) {
-  const location = req.query.location;
-  const fetchURL = `https://pixabay.com/api/?key=${pixabayAPIKEY}&q=${location}&image_type=photo;`
-  fetch(fetchURL)
-});
-
-app.post('/data', async function(req,res){
-  opts.title = req.query.information;
-  api.listStories(opts, (error, data, response)=> {
-      console.log("server 57: callback");
-      if (error) {
-        console.error(error);
-      } else {
-        console.log("API called successfully. Returned data: ");
-        console.log("========================================");
-        for (var i = 0; i < data.stories.length; i++) {
-          console.log(data.stories[i].title + " / " + data.stories[i].source.name);
-          projectData[i] = data.stories[i];
-        }
-        // console.log(projectData);
-        response = projectData;
-        console.log("server 63: ");
-        console.log(projectData);
-        res.send(projectData);
-      }
-  });
-  // res.send(projectData);
+app.get('/zip2name', function(req,res) {
+  console.log("server 50");
+  console.log(geonamesAPIKEY)
+  res.send(geonamesAPIKEY);
 });

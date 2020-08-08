@@ -15,33 +15,6 @@ example code:
 var https = require('follow-redirects').https;
 var fs = require('fs');
 
-var options = {
-  'method': 'POST',
-  'hostname': 'api.meaningcloud.com',
-  'path': '/sentiment-2.1?key=<your_key>&lang=<lang>&txt=<text>&model=<model>',
-  'headers': {
-  },
-  'maxRedirects': 20
-};
-
-var req = https.request(options, function (res) {
-  var chunks = [];
-
-  res.on("data", function (chunk) {
-    chunks.push(chunk);
-  });
-
-  res.on("end", function (chunk) {
-    var body = Buffer.concat(chunks);
-    console.log(body.toString());
-  });
-
-  res.on("error", function (error) {
-    console.error(error);
-  });
-});
-
-req.end();
 
 Open Weather
 endpoint: 'https://api.openweathermap.org/data/2.5/weather?zip='
@@ -52,8 +25,8 @@ endpoint: https://pixabay.com/api/?key=<>&q=<subject>&image_type=photo
 API key: 14246493-aa72736588a91c2f68f608bff
 
 GeoNames
-endpoint:
-apiKey:
+endpoint: http://api.geonames.org/postalCodeLookupJSON?postalcode=6600&username=demo
+apiKey: nightside1313
 
 WeatherBit.io
 endpoint: https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
@@ -64,3 +37,92 @@ apiKey: f77c86657daa470c98eea20e29af9467
 [Get forecast by city name,[city, state(optional), country (optional)],[[&city=Raleigh&country=US],[&city=Raleigh,NC],[&city=Raleigh,North+Carolina]]
 [Get forecast by postal code,	[postal_code,country (optional)],[&postal_code=27601&country=US]]
 }
+
+
+const baseURL = "http://localhost";
+const portID = 9000;
+const totalUrl = `${baseURL}:${portID}`
+let bufferDocument = new DocumentFragment(); // create fragment as change buffer
+let formData = {};
+let weatherGet = '';
+let imageURL = '';
+let dataToPost = {};
+let location = '';
+
+// Create a new date instance dynamically with JS
+let d = new Date();
+let newDate = d.getFullYear()+'-'+ d.getMonth()+'-'+ d.getDate();
+
+
+import 'regenerator-runtime/runtime'
+
+document.getElementById('generate').addEventListener('click', handleSubmit);
+
+
+async function handleSubmit(e){
+  location =  document.getElementById('locationData').value;
+  const date = document.getElementById('travelDates').value;
+  console.log(`${location} ${date} ${newDate}`)
+  if (Client.checkZipCode(location)){
+    weatherGet = '/weatherZIP';
+  }else{
+    weatherGet = '/weatherCity';
+  }
+  console.log(date - newDate);
+  if(date - newDate <= 7){
+    await getWeather(totalUrl,weatherGet,location);
+  }
+  await getPictures(totalUrl,location);
+  this.then(postData());
+}
+
+const getPictures = async (homeURL,location) => {
+  const fetchURL = `${homeURL}/views/?location=${location}`
+  console.log(fetchURL);
+  const res = await fetch(fetchURL)
+  try {
+    const data = await res.json();
+    imageURL = data.pageURL;
+  }catch(error){
+    console.log("error: ", error);
+  }
+}
+
+const getWeather = async (homeURL, weatherGet, location)=>{
+  const fetchURL = `${homeURL}${weatherGet}/?location=${location}`;
+  console.log(fetchURL);
+  const res = await fetch(fetchURL);
+  try {
+    const data = await res.json();
+//    console.log(data)
+    currentTemp = data.temp;
+    currentConditions = data.condition;
+    // const date = document.getElementById('dataData').value;
+    dataToPost = {
+      date: newDate,
+      temp: currentTemp,
+      condition: currentConditions
+    };
+    return dataToPost;
+  }catch(error) {
+    console.log("error", error);  // appropriately handle the error
+  }
+}
+
+function postData() {
+  const entryContainer = document.getElementById('entryHolder');
+  const entryPicture = document.getElementById('picture');
+  const newPicture = document.createElement('a');
+  newPicture.innerHTML = `href=${imageURL}" alt="${location}"`;
+  entryPicture.appendChild(newPicture);
+  const entryLocation = document.getElementById('locationName');
+  entryLocation.innerHTML = location;
+  const entryDate = document.getElementById('date');
+  entryDate.innerHTML = `Date: ${dataToPost.date}`;
+  const entryTemp = document.getElementById('temp');
+  entryTemp.innerHTML = `Tempurature: ${dataToPost.temp}`;
+
+}
+
+
+export { handleSubmit }

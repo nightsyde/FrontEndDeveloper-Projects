@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Travel Journal</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 </head>
  <body>
    <header>
@@ -18,7 +16,7 @@
    <main>
      <div id = "app">
        <div class ="holder headline">
-         Weather Journal App
+         Travel Journal App
        </div>
        <div class ="holder locationData">
          <label for="locationData">Enter City or Zipcode here</label>
@@ -31,10 +29,14 @@
        </div>
        <div class ="holder entry">
          <div class = "title">Most Recent Entry</div>
-         <div id = "entryHolder">
+         <div id = "tripDetails">
+           <div id = "picture"></div>
+           <div id = "locationName"></div>
            <div id = "date"></div>
-           <div id = "temp"></div>
-           <div id = "content"></div>
+           <div id = "weatherInformation">
+             <div id = "temp"></div>
+             <div id = "content"></div>
+           </div>
          </div>
        </div>
      </div>

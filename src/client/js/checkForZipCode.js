@@ -5,7 +5,9 @@ function checkZipCode(inputText) {
 
 
     if(!!pattern.test(inputText)) {
-       alert("You submitted a City.")
+//       alert(`${inputText} is a Zipcode`)
+    } else {
+//      alert(`${inputText} is a City`)
     }
     return !!pattern.test(inputText);
 }
