@@ -1,29 +1,20 @@
 /* Global Variables */
 let bufferDocument = new DocumentFragment(); // create fragment as change buffer
 const homeURL = 'http://localhost:9000';
-let weatherGet = '/weatherCity';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'-'+ d.getDate()+'-'+ d.getFullYear();
+let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // client side code for api
-
+let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
+let apiKey = '&appid=e7e66ceeab7188cf96ef0bbe2e64b9ac';
 
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e){
-  const location =  document.getElementById('locationData').value;
-  const date = document.getElementById('travelDates').value;
-  if (checkZipCode(location)){
-    weatherGet = '/weatherCity';
-  }else{
-    weatherGet = '/weatherZIP';
-  }
-  if(date - newDate <= 7){
-    getWeather(homeURL,location);
-  }
-  getPictures(location);
+  const zipCode =  document.getElementById('zip').value;
+  getWeather(baseURL,zipCode,apiKey);
 }
 
 function createNewPost(postData){
@@ -33,6 +24,8 @@ function createNewPost(postData){
   entryDate.innerHTML = `Date: ${postData.date}`;
   const entryTemp = document.getElementById('temp');
   entryTemp.innerHTML = `Tempurature: ${postData.temp}`;
+  const entryContent = document.getElementById('content');
+  entryContent.innerHTML = `Feeling: ${postData.content}`;
 }
 
 // parse weatherData for temperature
@@ -42,28 +35,17 @@ function parseWeatherData(data) {
   return currentTemp;
 }
 
-const getPictures = async (homeURL,location) => {
-  const fetchURL = `${homeURL}/pictures/?location=${location}`
-  const res = await fetch(fetchURL)
-  try {
-    const data = await res.json();
-    pictureLink = ;
-  }catch(error){
-    console.log("error: ", error);
-  }
-}
-
-const getWeather = async (homeURL, location)=>{
-  const fetchURL = `${homeURL}${weatherGet}/?location=${location}`
-  const res = await fetch(fetchURL)
+const getWeather = async (baseURL, zipCode, apiKey)=>{
+  const res = await fetch(baseURL+zipCode+apiKey)
   try {
     const data = await res.json();
 //    console.log(data)
     currentTemp = parseWeatherData(data);
-    // const date = document.getElementById('dataData').value;
+    const feelings = document.getElementById('feelings').value;
     const dataToPost = {
       date: newDate,
       temp: currentTemp,
+      content: feelings
     };
     const newData = await postData('',dataToPost);
     createNewPost(newData);
