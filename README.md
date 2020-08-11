@@ -20,3 +20,4 @@ Unix based development: npm run build-dev-unix (webpack.dev-unix.js)
 
 ## Resource Information
 = API information from GeoNames, Pixabay, and WeatherBit used
+= Added "generic" picture for obscure locations.

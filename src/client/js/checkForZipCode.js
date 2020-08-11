@@ -1,5 +1,5 @@
 function checkZipCode(inputText) {
-    console.log("::: Running checkZipCode :::", inputText);
+    // console.log("::: Running checkZipCode :::", inputText);
     var pattern = /[0-9]{5}([- ]?[0-9]{4})?/;
 
 

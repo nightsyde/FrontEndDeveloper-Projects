@@ -12,6 +12,7 @@ let travelDate = new Date();
 let timeDifference = '';
 let tempToPost = '';
 let condToPost ='';
+let projectData = {};
 
 const geoNamesKey='nightside1313';
 const weatherAPIKEY='f77c86657daa470c98eea20e29af9467';
@@ -22,7 +23,7 @@ let today = new Date();
 let newDate = today.getFullYear()+'-'+ today.getMonth()+'-'+ today.getDate();
 
 
-import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime';
 
 document.getElementById('generate').addEventListener('click', handleSubmit);
 
@@ -78,9 +79,8 @@ const getPictures = async (homeURL,cityName) => {
     if(data.totalHits > 0){
       imageURL = data.hits[0].previewURL;
 //      console.log(imageURL);
-    }else{
-      imageURL = '../media/sadface.jpg';
-
+    } else {
+      getBackupPicture();
     }
   }catch(error){
     console.log("75 error: ", error);
@@ -115,7 +115,30 @@ const getWeather = async (homeURL, cityName)=>{
   }
 }
 
+async function getBackupPicture() {
+  let fetchURL = `https://pixabay.com/api/?key=${pixabayAPIKEY}&q=United+States&image_type=photo&pretty=true`
+//  console.log("69: ");
+//  console.log(fetchURL);
+  const res = await fetch(fetchURL);
+  try {
+    const data = await res.json();
+//    console.log(data);
+    if(data.totalHits > 0){
+      imageURL = data.hits[0].previewURL;
+      console.log("128 "+imageURL);
+    } else {
+      imageURL = '../medea/sadface.jpg'
+    }
+    return
+  }catch(error){
+    console.log("75 error: ", error);
+  }
+
+}
+
 function postData() {
+  let moreData = sendDataToServer();
+  console.log(moreData);
   let entryContainer = document.getElementById('tripDetails');
   const entryPicture = document.getElementById('destinationPicture');
   const newPicture = document.getElementById('picture');
@@ -168,6 +191,36 @@ async function getDataFromServer(url,data){
   console.log("137: ");
   console.log(response);
   return response;
+}
+
+// Post data to server cache
+async function sendDataToServer( url = totalUrl, data = {}) {
+    // console.log(data);
+    data = {
+      date: travelDate,
+      destination: `${cityName}, ${stateName}`,
+      temperature: tempToPost,
+      conditions: condToPost,
+      locationPic: imageURL
+    }
+    console.log(data);
+    const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      credentials: 'omit', // include, *same-origin, omit
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+    try {
+        const newData = await response.json();
+        console.log(newData);
+
+        return newData
+    }catch(error) {
+      console.log('error:', error);
+      // appropriately handle the error
+    }
 }
 
 export { handleSubmit }
