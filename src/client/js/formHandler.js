@@ -79,7 +79,7 @@ const getPictures = async (homeURL,cityName) => {
       imageURL = data.hits[0].previewURL;
 //      console.log(imageURL);
     }else{
-      imageURL = '/media/sadface.jpg';
+      imageURL = '../media/sadface.jpg';
 
     }
   }catch(error){
